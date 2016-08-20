@@ -2,7 +2,6 @@
 
 # http://tldp.org/LDP/abs/html/options.html
 set -o errexit # Abort script at first error, when a command exits with non-zero status
-#set -o xtrace  # Print each command to 'stdout' before executing it
 
 # Mono
 # http://www.mono-project.com/docs/getting-started/install/linux/
