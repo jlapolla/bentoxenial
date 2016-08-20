@@ -3,5 +3,5 @@
 # http://tldp.org/LDP/abs/html/options.html
 set -o errexit # Abort script at first error, when a command exits with non-zero status
 
-sudo apt-get update
+sudo apt-get update 1>/dev/null
 
