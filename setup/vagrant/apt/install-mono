@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# http://tldp.org/LDP/abs/html/options.html
+set -o errexit # Abort script at first error, when a command exits with non-zero status
+
+# Need to select the wheezy release so Apt uses the version of Mono from
+# Xamarin, instead of the one from Ubuntu.
+sudo apt-get install -y mono-devel/wheezy
+
