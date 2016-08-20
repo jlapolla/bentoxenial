@@ -9,7 +9,7 @@ myDir=`dirname $0`
 logDir=$myDir/log
 
 # List of scripts to run
-scripts='add-apt-repos'
+scripts='bash/setup-bash add-apt-repos'
 
 # Run scripts using run-script
 for relFile in $scripts ; do

@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# http://tldp.org/LDP/abs/html/options.html
+set -o errexit # Abort script at first error, when a command exits with non-zero status
+
+myDir=`dirname $0`
+cp $myDir/.bashrc ~
+
+
