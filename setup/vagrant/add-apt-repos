@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# http://tldp.org/LDP/abs/html/options.html
+set -o errexit # Abort script at first error, when a command exits with non-zero status
+#set -o xtrace  # Print each command to 'stdout' before executing it
+
+# Mono
+# http://www.mono-project.com/docs/getting-started/install/linux/
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+sudo touch /etc/apt/sources.list.d/mono-xamarin.list
+sudo printf '%s\n' 'deb http://download.mono-project.com/repo/debian wheezy main' | sudo tee -a /etc/apt/sources.list.d/mono-xamarin.list 1>/dev/null
+

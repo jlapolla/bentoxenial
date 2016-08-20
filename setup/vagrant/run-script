@@ -1,0 +1,61 @@
+#!/bin/sh
+
+# http://tldp.org/LDP/abs/html/options.html
+set -o errexit # Abort script at first error, when a command exits with non-zero status
+
+status=0
+
+myDir=`dirname $0`
+logDir=$myDir/log
+
+relFile=$1
+relDir=`dirname $relFile`
+
+file=$myDir/$relFile
+dir=`dirname $file`
+
+if [ -f $logDir/completed/$relFile ] ; then
+
+  printf '%s\n' "$0: ERROR: $file already ran. To run again, remove the log file at $logDir/completed/$relFile" 1>&2
+  status=1
+elif [ -x $file ] ; then
+
+  if [ -f $logDir/failed/$relFile ] ; then
+
+    rm $logDir/failed/$relFile
+  fi
+
+  if [ -f $logDir/in-progress/$relFile ] ; then
+
+    printf '%s\n' "$0: WARNING: $file was previously started, but never finished." 1>&2
+  fi
+
+  sum=`md5sum $file | cut -d ' ' -f1`
+
+  mkdir -p $logDir/in-progress/$relDir
+  printf '%s\n' $sum 1>$logDir/in-progress/$relFile
+
+  set +o errexit
+  $file
+  status=$?
+  set -o errexit
+  rm $logDir/in-progress/$relFile
+
+  if [ x$status = x0 ] ; then
+
+    mkdir -p $logDir/completed/$relDir
+    printf '%s\n' $sum 1>$logDir/completed/$relFile
+  else
+
+    mkdir -p $logDir/failed/$relDir
+    printf '%s\n' $sum 1>$logDir/failed/$relFile
+    printf '%s\n' "$0: ERROR: $file exited with error $status." 1>&2
+  fi
+else
+
+  printf '%s\n' "$0: ERROR: $file is not an executable file." 1>&2
+  status=1
+fi
+
+exit $status
+
