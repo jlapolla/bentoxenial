@@ -1,0 +1,7 @@
+#!/bin/sh
+
+set -o errexit
+
+# https://github.com/VundleVim/Vundle.vim
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim 2>/dev/null
+vim +:PluginInstall +:qa 1>/dev/null
