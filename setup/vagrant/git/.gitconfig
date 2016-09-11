@@ -1,0 +1,24 @@
+[user]
+	email = j.a.lapolla@gmail.com
+	name = Justin LaPolla
+[core]
+	autocrlf = input
+	editor = vim
+	safecrlf = true
+	excludesfile = ~/.gitignore_global
+[color]
+	branch = auto
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[merge]
+	tool = vimdiff
+[mergetool]
+	prompt = false
+[push]
+	default = simple
+[pretty]
+	nice = %h %s
+[alias]
+	lograph = log --graph --pretty=nice

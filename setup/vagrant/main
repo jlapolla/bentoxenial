@@ -15,6 +15,7 @@ scripts='
   apt/update
   apt/install-vim
   apt/install-git
+  git/setup-git
   vim/install-vundle
   apt/install-curl
   python/install-pip
