@@ -3,4 +3,4 @@
 set -o errexit
 
 # https://pip.pypa.io/en/stable/installing/
-curl https://bootstrap.pypa.io/get-pip.py | sudo -H python -
+curl https://bootstrap.pypa.io/get-pip.py 2>/dev/null | sudo -H python -
