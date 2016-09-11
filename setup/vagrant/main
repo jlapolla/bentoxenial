@@ -9,7 +9,7 @@ myDir=`dirname $0`
 logDir=$myDir/log
 
 # List of scripts to run
-scripts='bash/setup-bash vim/setup-vim apt/update'
+scripts='bash/setup-bash vim/setup-vim apt/update apt/install-curl'
 
 # Run scripts using run-script
 for relFile in $scripts ; do
