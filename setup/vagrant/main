@@ -15,6 +15,7 @@ scripts='
   apt/update
   apt/install-curl
   python/install-pip
+  github/install-grip
 '
 
 # Run scripts using run-script
