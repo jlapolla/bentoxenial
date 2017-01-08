@@ -34,7 +34,7 @@ set smartindent
 set foldmethod=syntax
 
 " Other settings.
-set textwidth=0
+set textwidth=72
 set backspace=2
 set hlsearch
 set showcmd
