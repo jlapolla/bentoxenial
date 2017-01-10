@@ -1,6 +1,0 @@
-#!/bin/sh
-
-set -o errexit
-
-myDir=`dirname $0`
-cp $myDir/.gitconfig $myDir/.gitignore_global ~

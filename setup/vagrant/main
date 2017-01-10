@@ -4,10 +4,10 @@ dir=`dirname $0`
 
 . "$dir"/step
 
-step "$dir"/bash/setup-bash
-step "$dir"/vim/setup-vim
-step "$dir"/apt/update
-step "$dir"/apt/install-vim
-step "$dir"/apt/install-git
-step "$dir"/git/setup-git
-step "$dir"/vim/install-vundle
+step cp "$dir"/bash/.bashrc ~
+step cp "$dir"/vim/.vimrc ~
+step sudo apt-get update 1>/dev/null
+step sudo apt-get install -y git vim 1>/dev/null
+step cp "$dir"/git/.gitconfig "$dir"/git/.gitignore_global ~
+step git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim 2>/dev/null
+step vim +:PluginInstall +:qa 1>/dev/null
