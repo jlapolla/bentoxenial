@@ -17,9 +17,6 @@ scripts='
   apt/install-git
   git/setup-git
   vim/install-vundle
-  apt/install-curl
-  python/install-pip
-  github/install-grip
 '
 
 # Run scripts using run-script
