@@ -1,0 +1,33 @@
+#!/bin/sh
+
+log_file=`dirname $0`/current-step
+
+current_step=1
+
+if test $# -eq 0 ; then
+  if test -r "$log_file" ; then
+    step_start_at=`cat "$log_file"`
+  else
+    step_start_at=1
+  fi
+else
+  step_start_at=$1
+  shift
+fi
+
+step() {
+  if test $current_step -eq $step_start_at ; then
+    printf '%s ' "$@"
+    printf '\n'
+    if "$@" ; then
+      current_step=`expr $current_step + 1`
+      step_start_at=$current_step
+      printf '%s\n' $current_step 1>"$log_file"
+    else
+      printf '%s\n' 'Failed at step '$current_step'.' 1>&2
+      exit 1
+    fi
+  else
+    current_step=`expr $current_step + 1`
+  fi
+}
