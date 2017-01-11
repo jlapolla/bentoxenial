@@ -34,18 +34,18 @@ set smartindent
 set foldmethod=syntax
 
 " Other settings.
-set textwidth=72
+set textwidth=72 " Use 'gqip' command to wrap paragraph at 72 characters
 set backspace=2
-set hlsearch
-set showcmd
-set nowrap
-set ruler
+set hlsearch " Highlight search results
+set showcmd " Show command (in the bottom right corner) as you type it
+set nowrap " Do not wrap text to the width of the window
+set ruler " Show current line and column number (in the bottom right corner)
 set nojoinspaces
-set diffopt+=iwhite
+set diffopt+=iwhite " Ignore whitespace differences in 'diff' mode
 
 " Git commits
 " Git commit messages wrap at 72 characters.
-au FileType gitcommit setlocal tw=72
+" au FileType gitcommit setlocal textwidth=72
 
 " Makefiles
 " Enable hard tabs for Makefiles.
@@ -53,9 +53,16 @@ au FileType make setlocal noexpandtab tabstop=8
 
 " C#
 " http://codito.in/c-and-vim/
-au FileType cs set foldmethod=marker
-au FileType cs set foldmarker={,}
+au FileType cs setlocal foldmethod=marker
+au FileType cs setlocal foldmarker={,}
 " Remap zuz command from Konfekt/FastFold
 au FileType cs nmap zuz :set<Space>foldmethod=marker<CR><Plug>(FastFoldUpdate)
-" au FileType cs nmap zuz (FastFoldUpdate)
 
+" Markdown
+" au FileType md setlocal textwidth=72
+
+" Coq
+au FileType coq setlocal tabstop=8
+
+" Python
+au Filetype py setlocal shiftwidth=4 softtabstop=4
