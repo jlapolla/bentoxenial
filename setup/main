@@ -12,10 +12,14 @@ step git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.
 step cp "$dir"/vim/.vimrc ~
 step vim +:PluginInstall +:qa 1>/dev/null
 
-step sudo apt-get install -y curl 1>/dev/null
+step sudo apt-get install -y curl virtualenv 1>/dev/null
+
+# http://stackoverflow.com/a/15028735
+step virtualenv ~/python2/env/grip 1>/dev/null
+. ~/python2/env/grip/bin/activate
 
 # https://pip.pypa.io/en/stable/installing/
-step curl https://bootstrap.pypa.io/get-pip.py 2>/dev/null | sudo -H python -
+step curl https://bootstrap.pypa.io/get-pip.py 2>/dev/null | python -
 
 # https://github.com/joeyespo/grip
-step sudo -H pip install grip
+step pip install grip
