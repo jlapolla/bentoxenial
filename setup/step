@@ -1,6 +1,6 @@
 #!/bin/sh
 
-log_file=`dirname $0`/current-step
+log_file=${0}-current-step
 
 current_step=1
 
