@@ -11,3 +11,11 @@ step cp "$dir"/git/.gitconfig "$dir"/git/.gitignore_global ~
 step git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim 2>/dev/null
 step cp "$dir"/vim/.vimrc ~
 step vim +:PluginInstall +:qa 1>/dev/null
+
+step sudo apt-get install -y curl 1>/dev/null
+
+# https://pip.pypa.io/en/stable/installing/
+step curl https://bootstrap.pypa.io/get-pip.py 2>/dev/null | sudo -H python -
+
+# https://github.com/joeyespo/grip
+step sudo -H pip install grip
