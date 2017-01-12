@@ -11,3 +11,21 @@ step cp "$dir"/git/.gitconfig "$dir"/git/.gitignore_global ~
 step git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim 2>/dev/null
 step cp "$dir"/vim/.vimrc ~
 step vim +:PluginInstall +:qa 1>/dev/null
+
+step sudo apt-get install -y virtualenv
+
+# We globally install many of kaggle-titanic's dependencies through
+# 'apt-get', even though kaggle-titanic will not use these global
+# packages. kaggle-titanic will use 'pip' to install its own version of
+# these packages in its 'virtualenv'. However, 'pip' needs other
+# dependencies to be installed globally, otherwise it will not work.
+# Installing these packages globally through 'apt-get' helps ensure that
+# the dependencies that 'pip' needs are met.
+step sudo apt-get install -y python-numpy python-scipy python-pandas python-jinja2 python-markupsafe python-backports.ssl-match-hostname ipython python-matplotlib python-nose python-openpyxl python-patsy python-pyparsing python-dateutil python-scikits-learn python-six python-tornado python-statsmodels
+
+# Even after doing all that, there are still other dependencies that
+# 'pip' needs to setup kaggle-titanic.
+step sudo apt-get install -y libfreetype6 libfreetype6-dev libncurses5 libncurses5-dev pkg-config 
+
+step git clone https://github.com/agconti/kaggle-titanic.git ~/git/agconti/kaggle-titanic 
+step "$dir"/kaggle-titanic

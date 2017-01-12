@@ -1,0 +1,16 @@
+#!/bin/sh
+
+dir=/vagrant/setup
+
+. "$dir"/step
+
+cd ~/git/agconti/kaggle-titanic
+
+step virtualenv env
+
+. env/bin/activate
+
+# `pip install -r requirements.txt` does not work
+# http://stackoverflow.com/a/11015904
+step pip install `cat requirements.txt | grep -v statsmodels` xgboost
+step pip install `cat requirements.txt | grep statsmodels`
