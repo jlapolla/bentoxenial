@@ -11,7 +11,7 @@ step virtualenv env
 
 # `pip install -r requirements.txt` does not work
 # http://stackoverflow.com/a/11015904
-for package in xgboost jupyter `cat requirements.txt | sed 's/=.*//'`
+for package in jupyter `cat requirements.txt | sed 's/=.*//'`
 do
   step pip install "$package"
 done
