@@ -1,16 +1,17 @@
-#!/bin/sh
+#!/usr/bin/env dash
 
 dir=/vagrant/setup
 
 . "$dir"/step
 
 step cp "$dir"/bash/.bashrc ~
-step sudo apt-get update 1>/dev/null
-step sudo apt-get install -y git vim 1>/dev/null
+step sudo apt-get update
+step sudo apt-get install -y git
 step cp "$dir"/git/.gitconfig "$dir"/git/.gitignore_global ~
+step sudo apt-get install -y vim
 step git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim 2>/dev/null
 step cp "$dir"/vim/.vimrc ~
-step vim +:PluginInstall +:qa 1>/dev/null
+step vim +:PluginInstall +:qa
 
 step sudo apt-get install -y virtualenv
 
@@ -21,11 +22,31 @@ step sudo apt-get install -y virtualenv
 # dependencies to be installed globally, otherwise it will not work.
 # Installing these packages globally through 'apt-get' helps ensure that
 # the dependencies that 'pip' needs are met.
-step sudo apt-get install -y python-numpy python-scipy python-pandas python-jinja2 python-markupsafe python-backports.ssl-match-hostname ipython python-matplotlib python-nose python-openpyxl python-patsy python-pyparsing python-dateutil python-scikits-learn python-six python-tornado python-statsmodels
+step sudo apt-get install -y python-numpy
+step sudo apt-get install -y python-scipy
+step sudo apt-get install -y python-pandas
+step sudo apt-get install -y python-jinja2
+step sudo apt-get install -y python-markupsafe
+step sudo apt-get install -y python-backports.ssl-match-hostname
+step sudo apt-get install -y ipython
+step sudo apt-get install -y python-matplotlib
+step sudo apt-get install -y python-nose
+step sudo apt-get install -y python-openpyxl
+step sudo apt-get install -y python-patsy
+step sudo apt-get install -y python-pyparsing
+step sudo apt-get install -y python-dateutil
+step sudo apt-get install -y python-scikits-learn
+step sudo apt-get install -y python-six
+step sudo apt-get install -y python-tornado
+step sudo apt-get install -y python-statsmodels
 
 # Even after doing all that, there are still other dependencies that
 # 'pip' needs to setup kaggle-titanic.
-step sudo apt-get install -y libfreetype6 libfreetype6-dev libncurses5 libncurses5-dev pkg-config 
+step sudo apt-get install -y libfreetype6
+step sudo apt-get install -y libfreetype6-dev
+step sudo apt-get install -y libncurses5
+step sudo apt-get install -y libncurses5-dev
+step sudo apt-get install -y pkg-config 
 
 step git clone https://github.com/agconti/kaggle-titanic.git ~/git/agconti/kaggle-titanic 
 step "$dir"/kaggle-titanic

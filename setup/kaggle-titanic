@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env dash
 
 dir=/vagrant/setup
 
@@ -7,10 +7,11 @@ dir=/vagrant/setup
 cd ~/git/agconti/kaggle-titanic
 
 step virtualenv env
-
 . env/bin/activate
 
 # `pip install -r requirements.txt` does not work
 # http://stackoverflow.com/a/11015904
-step pip install `cat requirements.txt | grep -v statsmodels | sed 's/=[^ ]\+//g'` xgboost jupyter
-step pip install `cat requirements.txt | grep statsmodels | sed 's/=[^ ]\+//g'`
+for package in xgboost jupyter `cat requirements.txt | sed 's/=.//'`
+do
+  step pip install "$package"
+done
