@@ -50,3 +50,4 @@ step sudo apt-get install -y pkg-config
 
 step git clone https://github.com/agconti/kaggle-titanic.git ~/git/agconti/kaggle-titanic 
 step "$dir"/kaggle-titanic
+step true
