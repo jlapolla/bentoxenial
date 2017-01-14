@@ -12,5 +12,5 @@ step virtualenv env
 
 # `pip install -r requirements.txt` does not work
 # http://stackoverflow.com/a/11015904
-step pip install `cat requirements.txt | grep -v statsmodels | sed 's/=[^ ]\+//g'` xgboost
+step pip install `cat requirements.txt | grep -v statsmodels | sed 's/=[^ ]\+//g'` xgboost jupyter
 step pip install `cat requirements.txt | grep statsmodels | sed 's/=[^ ]\+//g'`
