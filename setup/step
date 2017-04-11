@@ -54,3 +54,27 @@ step() {
     step_current=$(($step_current + 1))
   fi
 }
+
+step_nolog() {
+  if test $step_current -eq $step_start_at ; then
+
+    log "$step_log_file" $@
+    echo $@
+    if "$@" 2>/dev/null 1>&2 ; then
+
+      step_current=$(($step_current + 1))
+      step_start_at=$step_current
+      echo $step_current 1>"$step_file"
+    else
+
+      echo $@
+      echo ERROR!!
+      exit 1
+    fi
+
+  else
+
+    step_current=$(($step_current + 1))
+  fi
+}
+

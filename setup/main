@@ -11,4 +11,5 @@ step cp "$dir"/git/.gitconfig "$dir"/git/.gitignore_global ~
 step sudo apt-get install -y vim
 step git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim 2>/dev/null
 step cp "$dir"/vim/.vimrc ~
-step vim +:PluginInstall +:qa
+step_nolog vim +:PluginInstall +:qa
+
