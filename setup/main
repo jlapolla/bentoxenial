@@ -6,7 +6,6 @@ dir=/vagrant/setup
 
 step cp "$dir"/bash/.bashrc ~
 step sudo apt-get update
-step sudo apt-get install -y git
 step cp "$dir"/git/.gitconfig "$dir"/git/.gitignore_global ~
 step git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 step cp "$dir"/vim/.vimrc ~
