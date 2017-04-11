@@ -29,7 +29,7 @@ log(){
     shift
   done
 
-  echo `date +%s` $message 1>>"$file"
+  echo [`date +%s`] $message 1>>"$file"
 }
 
 step() {
@@ -37,7 +37,7 @@ step() {
 
     log "$step_log_file" $@
     echo $@
-    if "$@" ; then
+    if "$@" 2>&1 | tee -a "$step_log_file" ; then
 
       step_current=$(($step_current + 1))
       step_start_at=$step_current
