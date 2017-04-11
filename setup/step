@@ -1,33 +1,80 @@
-#!/bin/sh
+#!/usr/bin/env dash
 
-log_file=${0}-current-step
+step_file=${0}-current-step.txt
+step_log_file=${0}-log.txt
 
-current_step=1
+step_current=1
 
-if test $# -eq 0 ; then
-  if test -r "$log_file" ; then
-    step_start_at=`cat "$log_file"`
-  else
-    step_start_at=1
-  fi
-else
+if [ $# -ge 1 ] ; then
+
   step_start_at=$1
   shift
+else
+
+  if [ -r "$step_file" ]
+  then step_start_at=`cat "$step_file"`
+  else step_start_at=1
+  fi
 fi
 
+log(){
+  local file message
+
+  file="$1"
+  shift
+  message=
+  while [ $# -ge 1 ] ; do
+
+    message="$message $1"
+    shift
+  done
+
+  echo [`date +%s`] $message 1>>"$file"
+}
+
 step() {
-  if test $current_step -eq $step_start_at ; then
-    printf '%s ' "$@"
-    printf '\n'
-    if "$@" ; then
-      current_step=`expr $current_step + 1`
-      step_start_at=$current_step
-      printf '%s\n' $current_step 1>"$log_file"
+  if test $step_current -eq $step_start_at ; then
+
+    log "$step_log_file" $@
+    echo $@
+    if "$@" 2>&1 | tee -a "$step_log_file" ; then
+
+      step_current=$(($step_current + 1))
+      step_start_at=$step_current
+      echo $step_current 1>"$step_file"
     else
-      printf '%s\n' 'Failed at step '$current_step'.' 1>&2
+
+      echo $@
+      echo ERROR!!
       exit 1
     fi
+
   else
-    current_step=`expr $current_step + 1`
+
+    step_current=$(($step_current + 1))
   fi
 }
+
+step_nolog() {
+  if test $step_current -eq $step_start_at ; then
+
+    log "$step_log_file" $@
+    echo $@
+    if "$@" 2>/dev/null 1>&2 ; then
+
+      step_current=$(($step_current + 1))
+      step_start_at=$step_current
+      echo $step_current 1>"$step_file"
+    else
+
+      echo $@
+      echo ERROR!!
+      exit 1
+    fi
+
+  else
+
+    step_current=$(($step_current + 1))
+  fi
+}
+

@@ -1,13 +1,13 @@
-#!/bin/sh
+#!/usr/bin/env dash
 
 dir=/vagrant/setup
 
 . "$dir"/step
 
 step cp "$dir"/bash/.bashrc ~
-step sudo apt-get update 1>/dev/null
-step sudo apt-get install -y git vim 1>/dev/null
+step sudo apt-get update
 step cp "$dir"/git/.gitconfig "$dir"/git/.gitignore_global ~
-step git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim 2>/dev/null
+step git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 step cp "$dir"/vim/.vimrc ~
-step vim +:PluginInstall +:qa 1>/dev/null
+step_nolog vim +:PluginInstall +:qa
+
