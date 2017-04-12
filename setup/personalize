@@ -1,0 +1,12 @@
+#!/usr/bin/env dash
+
+dir=/vagrant/setup
+
+. "$dir"/step
+
+step cp "$dir"/bash/.bashrc ~
+step cp "$dir"/git/.gitconfig "$dir"/git/.gitignore_global ~
+step cp "$dir"/vim/.vimrc ~
+step git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+step_nolog vim +:PluginInstall +:qa
+

@@ -4,17 +4,16 @@ dir=/vagrant/setup
 
 . "$dir"/step
 
-step cp "$dir"/bash/.bashrc ~
-step cp "$dir"/git/.gitconfig "$dir"/git/.gitignore_global ~
-step cp "$dir"/vim/.vimrc ~
+# Run `personalize` script if present
+test -f "$dir"/personalize && "$dir"/personalize
+
+# Update system package index
 step sudo apt-get update
-step git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-step_nolog vim +:PluginInstall +:qa
 
 # Install Python system site packages
-step sudo apt-get install -y python3-venv
 step sudo apt-get install -y python3-psutil
 step sudo apt-get install -y python3-tk
+step sudo apt-get install -y python3-venv
 
 # Install native packages
 step sudo apt-get install -y antlr4
